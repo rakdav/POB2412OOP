@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Lesson5._2</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Piramids\" />
+    <Folder Include="Biakone\" />
+    <Folder Include="Gardens\" />
+    <Folder Include="States\" />
+    <Folder Include="House\" />
+    <Folder Include="Mausoleum\" />
+    <Folder Include="Template\" />
+  </ItemGroup>
+
+</Project>
