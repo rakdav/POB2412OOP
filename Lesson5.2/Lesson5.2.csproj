@@ -10,8 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Piramids\" />
-    <Folder Include="Biakone\" />
-    <Folder Include="Gardens\" />
     <Folder Include="States\" />
     <Folder Include="House\" />
     <Folder Include="Mausoleum\" />
