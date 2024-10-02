@@ -63,27 +63,48 @@
 //mes += World;
 //mes();
 
-Operation operation=null;
-Console.Write("Введите первую переменную:");
-int x = int.Parse(Console.ReadLine()!);
-Console.Write("Введите вторую переменную:");
-int y = int.Parse(Console.ReadLine()!);
-Console.Write("Введите операцию:");
-char op=char.Parse(Console.ReadLine()!);
-switch(op)
-{
-    case '+':operation=Add; break;
-    case '-': operation = Sub; break;
-    case '*': operation = Mult; break;
-    case '/': operation = Div; break;
-    default: Console.WriteLine("Такой операции нет!");break;
-}
-if(operation!=null) Console.WriteLine($"Result={operation(x,y)}");
-int Add(int x, int y) => x + y;
-int Sub(int x, int y) => x - y;
-int Mult(int x, int y) => x * y;
-int Div(int x, int y) => x / y;
+//Operation operation=null;
+//Console.Write("Введите первую переменную:");
+//int x = int.Parse(Console.ReadLine()!);
+//Console.Write("Введите вторую переменную:");
+//int y = int.Parse(Console.ReadLine()!);
+//Console.Write("Введите операцию:");
+//char op=char.Parse(Console.ReadLine()!);
+//switch(op)
+//{
+//    case '+':operation=Add; break;
+//    case '-': operation = Sub; break;
+//    case '*': operation = Mult; break;
+//    case '/': operation = Div; break;
+//    default: Console.WriteLine("Такой операции нет!");break;
+//}
+//if(operation!=null) Console.WriteLine($"Result={operation(x,y)}");
+//int Add(int x, int y) => x + y;
+//int Sub(int x, int y) => x - y;
+//int Mult(int x, int y) => x * y;
+//int Div(int x, int y) => x / y;
 //void Hello() => Console.WriteLine("Hello");
 //void World() => Console.WriteLine("World");
 //delegate void Message();
-delegate int Operation(int x,int y);
+//delegate int Operation(int x,int y);
+
+Building[] mas=new Building[]
+{
+    new Building{BuildingName="1",Floors=5,
+                 Height=20,TotalArea=1200},
+    new Building{BuildingName="2",Floors=7,
+                 Height=27,TotalArea=1905},
+    new Building{BuildingName="3",Floors=3,
+                 Height=9,TotalArea=650}
+};
+
+void Print(Building[] mas,DelBuilding db)
+{
+    foreach(Building b in mas)
+    {
+        db = b.CalculateVolume;
+        Console.WriteLine(b.BuildingName+" "+b.Height+" "+
+            b.Floors+" "+b.TotalArea+"Valume:"+db());
+    }
+}
+delegate double DelBuilding();
