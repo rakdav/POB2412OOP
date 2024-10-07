@@ -211,6 +211,7 @@ do
                     Console.Write(++i + ".");
                     Console.WriteLine(calendar);
                 }
+                Console.ReadKey();
             }
             break;
         case 3:
