@@ -113,20 +113,126 @@
 //Создайте приложение для сортировки списка чисел. Реализуйте
 //сортировку с использованием List, а затем сравните производительность с
 //SortedSet.
-using System.Net.Http.Headers;
+//using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 
-List<int> list = new();
-SortedSet<int> s=new();
-Random random = new Random();
-for (int i = 0; i < random.Next(50); i++)
+//List<int> list = new();
+//SortedSet<int> s=new();
+//Random random = new Random();
+//for (int i = 0; i < random.Next(50); i++)
+//{
+//    int m=random.Next(10,100);
+//    list.Add(m);
+//    s.Add(m);
+//}
+//list.Sort();
+//foreach (int i in list) Console.Write(i+" ");
+//Console.WriteLine();
+//foreach (int i in s) Console.Write(i+" ");
+
+//Напишите программу, которая считает количество вхождений каждого
+//слова в тексте. Используйте Dictionary<string,int> для хранения результатов.
+
+//Console.WriteLine("Введите текст:");
+//string text = Console.ReadLine()!;
+//Dictionary<string, int> words = new();
+//string[] mas = Regex.Split(text, "[,.:; ]+");
+//int key = 0;
+//foreach (string ma in mas)
+//{
+//    if (words.ContainsKey(ma))
+//    {
+//        words[ma]++;
+//    }
+//    else
+//    {
+//        words.Add(ma, 1);
+//    }
+//}
+//foreach (var item in words)
+//{
+//    Console.WriteLine(item.Key + " " + item.Value);
+//}
+
+//string path = "test.txt";
+//Dictionary<string, int> words = new();
+//using (StreamReader reader = new StreamReader(path))
+//{
+//    string? line;
+//    while ((line = await reader.ReadLineAsync()) != null)
+//    {
+//        string[] mas=line.Split(" Ошибка: ");
+//        if (words.ContainsKey(mas[1]))
+//        {
+//            words[mas[1]]++;
+//        }
+//        else
+//        {
+//            words.Add(mas[1], 1);
+//        }
+//    }
+//    foreach (var item in words)
+//    {
+//        Console.WriteLine(item.Key + " " + item.Value);
+//    }
+//}
+
+//Разработайте календарь событий. События могут быть добавлены,
+//удалены и просмотрены. Используйте List или Dic
+List<EventCalendar> list = new();
+Console.WriteLine("Календарь\n 1 - Ввод события\n" +
+    "2 - Просмотр\n 3 - Удаление:");
+do
 {
-    int m=random.Next(10,100);
-    list.Add(m);
-    s.Add(m);
+    Console.Clear();
+    Console.WriteLine("Календарь\n 1 - Ввод события\n" +
+    "2 - Просмотр\n 3 - Удаление:");
+    int n = int.Parse(Console.ReadLine()!);
+    switch (n)
+    {
+        case 1: 
+            {
+                Console.Write("Введите название события:");
+                string name = Console.ReadLine()!;
+                Console.Write("Введите дату события:");
+                DateOnly date = DateOnly.Parse(Console.ReadLine()!);
+                list.Add(new EventCalendar() 
+                                            { 
+                                              NameEvent=name,
+                                              Date=date
+                                            });
+            } 
+            break;
+        case 2: 
+            {
+                int i = 0;
+                foreach (EventCalendar calendar in list)
+                {
+                    Console.Write(++i + ".");
+                    Console.WriteLine(calendar);
+                }
+            }
+            break;
+        case 3:
+            {
+                Console.Write("Введите номер события для удаления:");
+                int k = int.Parse(Console.ReadLine()!);
+                list.RemoveAt(k - 1);
+            } 
+            break;
+        default:
+            break;
+    }
 }
-list.Sort();
-foreach (int i in list) Console.Write(i+" ");
-Console.WriteLine();
-foreach (int i in s) Console.Write(i+" ");
+while (true);   
+class EventCalendar
+{
+    public string? NameEvent { get; set; }
+    public DateOnly Date { get; set; }
 
+    public override string? ToString()
+    {
+        return NameEvent+" "+Date;
+    }
+}
 
