@@ -5,24 +5,24 @@ void SendMessage<T>(T message) where T : Message
 }
 
 
-//SendMessage(new Message("Hello"));
-//SendMessage(new EMailMessage("Hello, mail"));
-//SendMessage(new SmsMessage("Hello, sms"));
+SendMessage(new Message("Hello"));
+SendMessage(new EMailMessage("Hello, mail"));
+SendMessage(new SmsMessage("Hello, sms"));
 
-//Messanger<Message> telegram=new Messanger<Message>();
-//telegram.SendMessage(new Message("Hello message"));
+Messanger<Message> telegram = new Messanger<Message>();
+telegram.SendMessage(new Message("Hello message"));
 
-//Messanger<EMailMessage> mail = new Messanger<EMailMessage>();
-//mail.SendMessage(new EMailMessage("Hello email"));
+Messanger<EMailMessage> mail = new Messanger<EMailMessage>();
+mail.SendMessage(new EMailMessage("Hello email"));
 
-//Messanger<SmsMessage> sms = new Messanger<SmsMessage>();
-//sms.SendMessage(new SmsMessage("Hello sms"));
+Messanger<SmsMessage> sms = new Messanger<SmsMessage>();
+sms.SendMessage(new SmsMessage("Hello sms"));
 
-//IntMessanger<double> intMessanger = new IntMessanger<double>();
-//RefMessnager<string> refMessnager = new RefMessnager<string>();
-//PersonMessanger<Message> person=new PersonMessanger<Message>();
-//Instantiator<string> instantiatorString = new Instantiator<string>();
-//Instantiator<int> instantiatorInt = new Instantiator<int>();
+IntMessanger<double> intMessanger = new IntMessanger<double>();
+RefMessnager<string> refMessnager = new RefMessnager<string>();
+PersonMessanger<Message> person = new PersonMessanger<Message>();
+Instantiator<string> instantiatorString = new Instantiator<string>();
+Instantiator<int> instantiatorInt = new Instantiator<int>();
 List<Book> list = new List<Book>();
 list.Add(new Book(
     1,
