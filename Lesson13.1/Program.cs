@@ -23,16 +23,16 @@ RefMessnager<string> refMessnager = new RefMessnager<string>();
 PersonMessanger<Message> person=new PersonMessanger<Message>();
 Instantiator<string> instantiatorString = new Instantiator<string>();
 Instantiator<int> instantiatorInt = new Instantiator<int>();
-List<Book> list = new List<Book>();
-list.Add(new Book()
+List<Book<int>> list = new List<Book<int>>();
+list.Add(new Book<int>()
 {
     Id = 1,
     Author = "fs",
     PublicationYear=DateTime.Parse("2024-01-01"),
     Title="dsds"
 });
-Catalog<Book> books = new Catalog<Book>(list);
-books.AddBook(new Book());
+Catalog<Book<int>> books = new Catalog<Book<int>>();
+books.AddBook(new Book<int>());
 class Message
 {
     public string? Text { get; }
@@ -80,25 +80,25 @@ class Instantiator<T>
     }
 }
 
-interface ICatalogItem
+interface ICatalogItem<T>
 {
-    public int Id { get; set; }
+    public T Id { get; set; }
 }
-class Book:ICatalogItem
+class Book<T>:ICatalogItem<T>
 {
     public string? Title { get; set; }
     public string? Author { get; set; }
     public DateTime? PublicationYear { get; set; }
-    public int Id 
+    public T Id 
     { 
         get => Id;
         set => Id=value; 
     }
 }
-class Catalog<T> where T : ICatalogItem
+class Catalog<T> where T : Book<T>
 {
-    private List<T>? collection;
-    public Catalog(List<T>? collection)=>this.collection = collection;
+    private List<T>? collection=new();
+    public Catalog() { }
     public void AddBook(T book) => collection!.Add(book);
     public List<T> GetBooks() => collection!;
     public T GetConcreteBook(int id) => collection[id];
