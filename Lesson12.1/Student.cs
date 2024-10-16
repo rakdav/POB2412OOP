@@ -21,8 +21,26 @@ namespace Lesson12._1
                 marks[i]=random.Next(2,6);
             }
         }
+        public Student()
+        {
+
+        }
         public object Clone()
         {
+            //if (Group is int)
+            //{
+            //    return new Student<int>() { 
+            //        FIO= this.FIO,
+            //        Group = Group as Int64,
+            //        marks = this.marks
+            //    };
+            //}
+            //return new Student<string>()
+            //{
+            //    FIO = this.FIO,
+            //    Group = Group,
+            //    marks = this.marks
+            //};
             return MemberwiseClone();
         }
 
@@ -51,7 +69,12 @@ namespace Lesson12._1
 
         public override string? ToString()
         {
-            return FIO+" "+Group;
+            string res = FIO+" "+Group+" ";
+            foreach (var item in marks)
+            {
+                res += item + " ";
+            }
+            return res;
         }
     }
 }
