@@ -5,34 +5,40 @@ void SendMessage<T>(T message) where T : Message
 }
 
 
-SendMessage(new Message("Hello"));
-SendMessage(new EMailMessage("Hello, mail"));
-SendMessage(new SmsMessage("Hello, sms"));
+//SendMessage(new Message("Hello"));
+//SendMessage(new EMailMessage("Hello, mail"));
+//SendMessage(new SmsMessage("Hello, sms"));
 
-Messanger<Message> telegram=new Messanger<Message>();
-telegram.SendMessage(new Message("Hello message"));
+//Messanger<Message> telegram=new Messanger<Message>();
+//telegram.SendMessage(new Message("Hello message"));
 
-Messanger<EMailMessage> mail = new Messanger<EMailMessage>();
-mail.SendMessage(new EMailMessage("Hello email"));
+//Messanger<EMailMessage> mail = new Messanger<EMailMessage>();
+//mail.SendMessage(new EMailMessage("Hello email"));
 
-Messanger<SmsMessage> sms = new Messanger<SmsMessage>();
-sms.SendMessage(new SmsMessage("Hello sms"));
+//Messanger<SmsMessage> sms = new Messanger<SmsMessage>();
+//sms.SendMessage(new SmsMessage("Hello sms"));
 
-IntMessanger<double> intMessanger = new IntMessanger<double>();
-RefMessnager<string> refMessnager = new RefMessnager<string>();
-PersonMessanger<Message> person=new PersonMessanger<Message>();
-Instantiator<string> instantiatorString = new Instantiator<string>();
-Instantiator<int> instantiatorInt = new Instantiator<int>();
-List<Book<int>> list = new List<Book<int>>();
-list.Add(new Book<int>()
+//IntMessanger<double> intMessanger = new IntMessanger<double>();
+//RefMessnager<string> refMessnager = new RefMessnager<string>();
+//PersonMessanger<Message> person=new PersonMessanger<Message>();
+//Instantiator<string> instantiatorString = new Instantiator<string>();
+//Instantiator<int> instantiatorInt = new Instantiator<int>();
+List<Book> list = new List<Book>();
+list.Add(new Book(
+    1,
+    "fs",
+    "sfs",
+    DateTime.Parse("2024-01-01")
+));
+Catalog<Book> books = new Catalog<Book>(list);
+books.AddBook(new Book(1,
+    "fs",
+    "sfs",
+    DateTime.Parse("2024-01-01")));
+foreach(Book i in books.GetBooks())
 {
-    Id = 1,
-    Author = "fs",
-    PublicationYear=DateTime.Parse("2024-01-01"),
-    Title="dsds"
-});
-Catalog<Book<int>> books = new Catalog<Book<int>>();
-books.AddBook(new Book<int>());
+    Console.WriteLine(i.Id+" "+i.Title+" "+i.Author+" "+i.PublicationYear);
+}
 class Message
 {
     public string? Text { get; }
@@ -82,23 +88,31 @@ class Instantiator<T>
 
 interface ICatalogItem<T>
 {
-    public T Id { get; set; }
+    T Id { get;}
 }
-class Book<T>:ICatalogItem<T>
+class Book : ICatalogItem<int>
 {
     public string? Title { get; set; }
     public string? Author { get; set; }
     public DateTime? PublicationYear { get; set; }
-    public T Id 
-    { 
-        get => Id;
-        set => Id=value; 
+    public int Id
+    {
+        get;
+    }
+    public Book(int id,string title,string author,DateTime py) {
+        Id = id;
+        Title = title;
+        Author = author;
+        PublicationYear = py;
     }
 }
-class Catalog<T> where T : Book<T>
+class Catalog<T> where T : ICatalogItem<int>
 {
     private List<T>? collection=new();
-    public Catalog() { }
+    public Catalog(List<T>? l) 
+    {
+        collection.AddRange(l!);
+    }
     public void AddBook(T book) => collection!.Add(book);
     public List<T> GetBooks() => collection!;
     public T GetConcreteBook(int id) => collection[id];
